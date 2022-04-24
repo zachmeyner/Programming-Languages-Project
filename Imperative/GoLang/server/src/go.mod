@@ -1,3 +1,3 @@
-module github.com/zachmeyner/Programming-Languages-Project/Imperative/GoLnag/server/src
+module Imperative/GoLang/server/src
 
 go 1.18
