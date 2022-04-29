@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  	<head>
+		<title>Animal Pictures</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="/styles/style.css">
+	</head>
+	
+	<body>
+		<div class="game-grid">
+			{{#each this}}
+				<div class="game">
+					<a href="/photos/{{location}}" style="">
+						<img class="game-grid-item" src="/photos/{{location}}" alt="Mylo">
+					</a>
+				</div>
+			{{/each}}
+		</div>
+	
+    
+	</body>
+</html>
