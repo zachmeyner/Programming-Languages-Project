@@ -1,9 +1,15 @@
+// I am writing this one after rust, so all my thoughts on what I am doing here
+// is based entirely on my only experience making web servers only in rust.
+// Everything I say will be a comparison to rust
+
 package main
 
+// Imports are very nice in go. This is a hard comparison vs Rust
 import (
 	"flag"
 	"log"
 	"net/http"
+	"strconv"
 
 	"io/ioutil"
 
@@ -11,6 +17,8 @@ import (
 	"github.com/gorilla/mux"
 )
 
+// I enjoy that serialization for structs are declared right in the struct,
+// and you can define the json serialization of the struct to be different than the variable name
 type Media struct {
 	Pic      bool   `json:"pic"`
 	Location string `json:"location"`
@@ -19,6 +27,7 @@ type Media struct {
 	Desc     string `json:"desc"`
 }
 
+// Substitute for database cause again, not setting that up for this.
 var MYLO_MEDIA = []Media{
 	{
 		Pic:      true,
@@ -169,24 +178,36 @@ var MYLO_MEDIA = []Media{
 	},
 }
 
+// For a web server in go you run it out of main.
+// In main you are declaring what you locations you're serving, what you're serving there,
+// and what port it should all be on.
 func main() {
 	router := mux.NewRouter().StrictSlash(true)
+
 	port := flag.String("p", "8000", "port to serve on")
 	mediaDir := flag.String("m", "../../../media", "media static files to serve")
-	stylesDir := flag.String("s", "../templates", "media static files to serve")
+	stylesDir := flag.String("s", "../templates/", "media static files to serve")
+
 	fs1 := http.FileServer(http.Dir(*mediaDir))
 	fs2 := http.FileServer(http.Dir(*stylesDir))
 
+	// To initialize the fileserver and HTTP request handler is a bit more tricky than it is in rust
 	router.HandleFunc("/", index).Methods("GET")
-	router.PathPrefix("/").Handler(http.StripPrefix("/photos", fs1))
-	router.PathPrefix("/").Handler(http.StripPrefix("/styles", fs2))
+	router.HandleFunc("/dispmedia/{id}", media_page).Methods("GET")
+	router.PathPrefix("/photos/").Handler(http.StripPrefix("/photos", fs1))
+	router.PathPrefix("/styles/").Handler(http.StripPrefix("/styles", fs2))
+
 	log.Printf("Serving %s and %s on HTTP port %s\n", *mediaDir, *stylesDir, *port)
 
+	// Starting the server is way easier than in rust for sure though.
 	log.Fatal(http.ListenAndServe(":"+*port, router))
 }
 
+// http functions are very different from rust.
+// In rust you return from the function what you are returning to the user,
+// but here the response and request are both in the function header.
 func index(w http.ResponseWriter, r *http.Request) {
-	w.WriteHeader(http.StatusCreated)
+	w.WriteHeader(http.StatusOK)
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 
 	tpl, err := ioutil.ReadFile("../templates/index.html.hbs")
@@ -195,6 +216,31 @@ func index(w http.ResponseWriter, r *http.Request) {
 	}
 
 	result, err := raymond.Render(string(tpl), MYLO_MEDIA)
+	if err != nil {
+		panic("Oh no 2")
+	}
+	w.Write([]byte(result))
+}
+
+func media_page(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	id, ok := vars["id"]
+
+	if !ok {
+		w.Write([]byte("You forgot the image number"))
+	}
+
+	args, err := strconv.Atoi(id)
+
+	w.WriteHeader(http.StatusOK)
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+
+	tpl, err := ioutil.ReadFile("../templates/picture.html.hbs")
+	if err != nil {
+		panic("Oh no 1")
+	}
+
+	result, err := raymond.Render(string(tpl), MYLO_MEDIA[args])
 	if err != nil {
 		panic("Oh no 2")
 	}
