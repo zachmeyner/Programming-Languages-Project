@@ -5,7 +5,7 @@ set (CMAKE_CXX_STANDARD 20)
 include(CTest)
 enable_testing()
 
-add_executable(animals animal.cpp cat.cpp main.cpp)
+add_executable(animals animal.cpp cat.cpp dog.cpp main.cpp)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

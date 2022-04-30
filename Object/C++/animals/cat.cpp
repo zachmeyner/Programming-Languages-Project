@@ -1,15 +1,15 @@
 #include <stdio.h>
 #include "cat.h"
 
-Cat::Cat(std::string myName, std::string ownName): Animal(number+=1, myName, ownName){}
-Cat::Cat(std::string myName): Animal(number+= 1, myName){}
+Cat::Cat(std::string myName, std::string ownName): Animal(number++, myName, ownName){}
+Cat::Cat(std::string myName): Animal(number++, myName){}
 
 int Cat::CatCount() {
     return number;
 }
 
 void Cat::Identify() const {
-    printf("A cat\n");
+    printf("A cat.\n");
     Animal::Identify();
 }
 
