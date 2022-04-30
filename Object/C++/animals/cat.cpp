@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include "cat.h"
 
-Cat::Cat(std::string myName, std::string ownName): Animal(number++, myName, ownName){}
-Cat::Cat(std::string myName): Animal(number++, myName){}
+Cat::Cat(std::string myName, std::string ownName): Animal(++number, myName, ownName){}
+Cat::Cat(std::string myName): Animal(++number, myName){}
 
 int Cat::CatCount() {
     return number;

@@ -1,7 +1,7 @@
 #include "dog.h"
 
-Dog::Dog(std::string myName, std::string ownName): Animal(number++, myName, ownName) {}
-Dog::Dog(std::string myName): Animal(number++, myName) {}
+Dog::Dog(std::string myName, std::string ownName): Animal(++number, myName, ownName) {}
+Dog::Dog(std::string myName): Animal(++number, myName) {}
 
 int Dog::DogCount() {
     return number;
