@@ -1,3 +1,7 @@
+{---
+  This is the first ever thing I've written in a function language, I have no clue how to do it so I found a general outline 
+  that I liked for making tic tac toe in haskell. After finishing this I'm going to attempt to do what I did here, but in some other functional langauge.
+---}
 import System.IO (hFlush, stdout)
 import System.Random (randomIO)
 import Model (initialState, doTurn, getWinner, isVacant, Player(X, O), State(boardState, turnState))
