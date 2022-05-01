@@ -28,8 +28,21 @@ public class Main {
         System.out.printf("Dogs: %d\n", Dog.DogCount());
         System.out.printf("\tName: %s\n\tOwner: %s\n", rover.GetName(), rover.GetOwner());
         System.out.printf("\tName: %s\n\tOwner: %s\n", max.GetName(), max.GetOwner());
+        System.out.printf("Swapping owner status.\n");
+
+        rover.RemoveOwner();
+        max.SetOwner("Johnathan");
+        System.out.printf("\tName: %s\n\tOwner: %s\n", rover.GetName(), rover.GetOwner());
+        System.out.printf("\tName: %s\n\tOwner: %s\n", max.GetName(), max.GetOwner());
         System.out.printf("\n");
+
         System.out.printf("Cats: %d\n", Cat.CatCount());
+        System.out.printf("\tName: %s\n\tOwner: %s\n", fluffy.GetName(), fluffy.GetOwner());
+        System.out.printf("\tName: %s\n\tOwner: %s\n", jeff.GetName(), jeff.GetOwner());
+        System.out.printf("Swapping owner status.\n");
+
+        jeff.RemoveOwner();
+        fluffy.SetOwner("Johnathan");
         System.out.printf("\tName: %s\n\tOwner: %s\n", fluffy.GetName(), fluffy.GetOwner());
         System.out.printf("\tName: %s\n\tOwner: %s\n", jeff.GetName(), jeff.GetOwner());
     }

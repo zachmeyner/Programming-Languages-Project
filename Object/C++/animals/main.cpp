@@ -33,8 +33,21 @@ int main() {
     printf("Dogs: %d\n", Dog::DogCount());
     printf("\tName: %s\n\tOwner: %s\n", rover.GetName().c_str(), rover.GetOwner().c_str());
     printf("\tName: %s\n\tOwner: %s\n", max.GetName().c_str(), max.GetOwner().c_str());
+    printf("Swapping owner status.\n");
+
+    rover.RemoveOwner();
+    max.SetOwner("Johnathan");
+    printf("\tName: %s\n\tOwner: %s\n", rover.GetName().c_str(), rover.GetOwner().c_str());
+    printf("\tName: %s\n\tOwner: %s\n", max.GetName().c_str(), max.GetOwner().c_str());
     printf("\n");
+
     printf("Cats: %d\n", Cat::CatCount());
+    printf("\tName: %s\n\tOwner: %s\n", fluffy.GetName().c_str(), fluffy.GetOwner().c_str());
+    printf("\tName: %s\n\tOwner: %s\n", jeff.GetName().c_str(), jeff.GetOwner().c_str());
+    printf("Swapping owner status.\n");
+
+    jeff.RemoveOwner();
+    fluffy.SetOwner("Johnathan");
     printf("\tName: %s\n\tOwner: %s\n", fluffy.GetName().c_str(), fluffy.GetOwner().c_str());
     printf("\tName: %s\n\tOwner: %s\n", jeff.GetName().c_str(), jeff.GetOwner().c_str());
 

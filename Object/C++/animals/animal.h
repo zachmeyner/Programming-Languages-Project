@@ -20,6 +20,8 @@ class Animal {
         virtual std::string GetName() const;
         virtual std::string GetOwner() const;
         virtual void SetName(std::string newName);
+        virtual void SetOwner(std::string newOwn);
+        virtual void RemoveOwner();
 
         virtual void MakeNoise() const = 0;
         virtual void Identify() const;

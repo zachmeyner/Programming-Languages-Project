@@ -3,9 +3,7 @@
 #include "animal.h"
 #include <stdio.h>
 
-Animal::Animal(int anID, std::string anName): id(anID), name(anName) {
-    owner = std::nullopt;
-}
+Animal::Animal(int anID, std::string anName): id(anID), name(anName), owner(std::nullopt) {}
 
 Animal::Animal(int anID, std::string anName, std::string anOwner): id(anID), name(anName), owner(anOwner) {}
 
@@ -23,6 +21,14 @@ std::string Animal::GetOwner() const {
 
 void Animal::SetName(std::string newName) {
     name = newName;
+}
+
+void Animal::SetOwner(std::string newOwner) {
+    owner = newOwner;
+}
+
+void Animal::RemoveOwner() {
+    owner = std::nullopt;
 }
 
 void Animal::Identify() const {

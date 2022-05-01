@@ -29,6 +29,12 @@ abstract class Animal {
     public void SetName(String newName){
         name = newName;
     }
+    public void SetOwner(String newOwner){
+        owner = Optional.ofNullable(newOwner);
+    }
+    public void RemoveOwner() {
+        owner = Optional.empty();
+    }
 
     abstract void MakeNoise();
     public void Identify(){

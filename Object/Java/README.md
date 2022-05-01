@@ -13,7 +13,7 @@ These are required to build and run the program.
 
 To build and run change directory  to `animals/` and type in the terminal
 ```bash
-javac Main.java
+javac Animal.java Cat.java Dog.java
 java Main.java
 ```
 This will build the .class files required to run the program, and then run the program.

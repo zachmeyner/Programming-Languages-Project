@@ -10,7 +10,7 @@ public class Cat extends Animal {
     }
 
     public void MakeNoise() {
-        System.out.println("Meow.\n");
+        System.out.println("Meow.");
     }
 
     public void Identify() {
