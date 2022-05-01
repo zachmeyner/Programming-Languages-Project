@@ -1,5 +1,5 @@
 # C++
-I don't need to write instructions for this do I?
+Use gcc of at least 9.4.0
 
 ## Cmake
 To build I will be using CMake to auto-generate the Makefile for the program.
